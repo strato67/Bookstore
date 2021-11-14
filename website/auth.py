@@ -23,7 +23,7 @@ def signup():
         if password != password1:
             flash('Passwords do not match',category='error')
         else:
-            flash('Hello',category='success')
+            flash('Account has been created',category='success')
 
 
     return render_template("signup.html")
