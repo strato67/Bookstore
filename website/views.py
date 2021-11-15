@@ -34,8 +34,8 @@ def addcart(book_id):
         cart=Cart(user_id=current_user.id,book_id=book_id)
         db.session.add(cart)
         db.session.commit()
-        flash('Book has been Successfully Added in Cart', 'success')
+        flash('Book added successfully', 'success')
         return redirect(url_for('cart'))
     else:
-        flash('Login to add Book in your Cart', 'danger')
+        flash('Login to add this book to your cart.', 'error')
         return redirect(url_for('auth.login'))

@@ -4,6 +4,7 @@
 
 body{
     max-height: max-content;
+    
 }
 
 
@@ -11,17 +12,20 @@ body{
     height: 40px;
     box-shadow: none;
     color: #969fa4;
+    
 }
 .form-control:focus{
     border-color: #020202;
 }
 .form-control, .btn{        
     border-radius: 3px;
+    
 }
 .signup-form{
     width: 400px;
     margin: 0 auto;
     padding: 5% 0;
+    
 }
 .signup-form h2{
     color: #636363;
@@ -56,6 +60,7 @@ body{
     background: #f2f3f7;
     box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
     padding: 30px;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
 }
 .signup-form .form-group{
     margin-bottom: 20px;

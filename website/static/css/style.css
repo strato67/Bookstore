@@ -1,13 +1,39 @@
 .content-section {
-  background: #ffffff;
-  padding: 10px 20px;
+  display: flex;
+  align-items: center; 
+  
+  justify-content: center;
+  background: #FDFDFD;
+  
   border: 1px solid #dddddd;
-  border-radius: 3px;
-  margin-bottom: 20px;
-  width: 20%;
-  margin: 0 auto 1%;
-
+  border-radius: 6px;
+  margin: auto;
+  width: 50%;
+  padding: 1em;
+  
+  
 }
+
+.content-section:hover{
+  transform: scale(1.01);
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+
+.scontainer {
+
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  justify-content: stretch; 
+  align-content: center; 
+  justify-items: center; 
+  align-items: stretch; 
+  gap: 2em 0px; 
+  padding: 1em;
+  margin-bottom: 3em;
+}
+
+
 
 .article-title {
   color: #444444;

@@ -19,19 +19,30 @@
 
 </div>
 
+
+
+
+<div class="scontainer">
+
 {% for book in books %}
-        <article class="media content-section">
-          <img class="rounded-circle article-img" src="{{ url_for('static', filename='Book_Image/' + book.image_file) }}">
-          <div class="media-body">
-            <div class="article-metadata">
-              <a class="mr-2" href="{{ url_for('views.book_info', book_id=book.id) }}">{{ book.title }}</a></br>
+
+        <div class="card content-section h-100">
+          <a class="mr-2" href="{{ url_for('views.book_info', book_id=book.id) }}">
+          <img class="card-img-top h-60" src="{{ url_for('static', filename='Book_Image/' + book.image_file) }}">
+          <div class="card-body">
+            
+              <h5>{{ book.title }}</h5>
+              <hr style="width:50%">
               <small class="text-muted">{{ book.author }}</small>
-            </div>
-            <p class="article-content">${{ book.price }}</p>
+            
+            <h6>${{ book.price }}</h6>
           </div>
-        </article>
+        </a>
+        </div>
 
 {% endfor %}
+</div>
+
 
 {% include 'footer.html' %}
 
