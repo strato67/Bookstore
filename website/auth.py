@@ -9,27 +9,20 @@ auth = Blueprint('auth',__name__)
 
 @auth.route('/login',methods=['GET','POST'])
 def login():
-    
+
     if request.method=='POST':
         email = request.form.get('email')
         password = request.form.get('password')
-
         user = User.query.filter_by(email=email).first()
-
         if user:
             if check_password_hash(user.password,password):
-
                 flash('Logged in successfully!', category='success')
                 login_user(user,remember=True)
                 return redirect(url_for('views.home'))
-
             else:
                 flash('Incorrect password',category='error')
-
         else:
             flash('Account does not exist',category='error')
-
-    
     return render_template("login.html",user=current_user)
 
 @auth.route('/logout')
@@ -53,9 +46,7 @@ def signup():
         password1 = request.form.get('confirmpassword')
         address = request.form.get('address')
         phone = request.form.get('phone')
-        
         user = User.query.filter_by(email=email).first()
-        
         
         if user:
             flash('Account already exists',category='error')
@@ -70,5 +61,6 @@ def signup():
             flash('Account created!', category='success')
             return redirect(url_for('views.home'))
 
-
     return render_template("signup.html",user=current_user)
+
+

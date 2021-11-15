@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block content %}
+  <article class="media content-section">
+    <img class="book-img" src="{{ url_for('static', filename='Book_Image/' + book.image_file) }}">
+    <div class="media-body">
+      <div class="article-metadata">
+        <h2 class="book-title">{{ book.title }}</h2>
+        <h3><small class="text-muted">{{ book.author }}</small></h3>
+      </div>
+	  <h5 class="article-content">${{ book.price }}</h5>
+	  <h6 class="article-content">About Book : </h6>
+      <p class="article-content">{{ book.genre_id }}</h2>
+	  <h6 class="article-content">Publication : {{ book.publication }}</h6>
+
+    </div> 
+  </article>
+{% endblock content %}
