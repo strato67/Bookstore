@@ -1,4 +1,11 @@
-const className = document.getElementsByClassName("shop-container");
+const className = document.getElementsByClassName("scontainer");
+
+var fantasy =  className[0].getElementsByClassName("Fantasy");
+var fiction =  className[0].getElementsByClassName("Fiction");
+var nonfiction =  className[0].getElementsByClassName("Non-Fiction");
+var action =  className[0].getElementsByClassName("Action");
+var adventure =  className[0].getElementsByClassName("Adventure");
+var comics =  className[0].getElementsByClassName("Comics");
 
 //Handles button selection
 function shopFilter(selection){
@@ -28,20 +35,19 @@ function visible(){
 }
 
 //Handles category selection, when a category is selected, visibility of others set to none
-function cardSelect(card){
-    var amdArray =  className[0].getElementsByClassName("amd");
-    var nArray =  className[0].getElementsByClassName("nvidia");
+function cardSelect(genre){
+ 
     visible();
-    if(card==='amd'){
+    if(genre==='amd'){
         
         for(let i = 0;i<nArray.length;i++){
-            nArray[i].style.display="none";
+            //nArray[i].style.display="none";
         }
     
     }else{
         
         for(let i = 0;i<amdArray.length;i++){
-            amdArray[i].style.display="none";
+            //amdArray[i].style.display="none";
         }
     } 
         

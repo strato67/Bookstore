@@ -25,9 +25,9 @@
   <button class="btn btn-secondary" onclick="shopFilter('nvidia')">Action</button>
   <button class="btn btn-secondary" onclick="shopFilter('nvidia')">Adventure</button>
   <button class="btn btn-secondary" onclick="shopFilter('amd')">Comics</button>
-  <button class="btn btn-secondary" onclick="shopFilter('amd')">Genre</button>
-  <button class="btn btn-secondary" onclick="shopFilter('amd')">Genre</button>
-  <button class="btn btn-secondary" onclick="shopFilter('amd')">Genre</button>
+  <button class="btn btn-secondary" onclick="shopFilter('amd')">Fantasy</button>
+  <button class="btn btn-secondary" onclick="shopFilter('amd')">Fiction</button>
+  <button class="btn btn-secondary" onclick="shopFilter('amd')">Non-Fiction</button>
   <hr style="width:50%;">
 </div>
 
@@ -37,7 +37,7 @@
 
 {% for book in books %}
 
-        <div class="card content-section h-100">
+        <div class="card content-section h-100 amd">
           <a class="mr-2" href="{{ url_for('views.book_info', book_id=book.id) }}">
           <img class="card-img-top h-60" src="{{ url_for('static', filename='Book_Image/' + book.image_file) }}">
           <div class="card-body">
