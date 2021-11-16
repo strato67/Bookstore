@@ -1,7 +1,7 @@
 from flask import Blueprint,render_template, request, flash, redirect, url_for
 from flask_login import login_required, current_user
 from . import db
-from .models import Book, Cart
+from .models import Book, Cart, Genre
 
 views = Blueprint('views',__name__)
 
@@ -9,6 +9,9 @@ views = Blueprint('views',__name__)
 
 def home():
     books= Book.query.all()
+    #genre = Book.query.filter_by(title="The Catcher in the Rye").all()
+    genre = Genre.query.all()
+    print(genre)
     return render_template("index.html",user=current_user,books=books)
 
 

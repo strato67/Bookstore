@@ -29,17 +29,22 @@ class Book(db.Model, UserMixin):
     price = db.Column(db.Integer, nullable=False)
     quantity=db.Column(db.Integer, nullable=False)
     image_file = db.Column(db.String(20), nullable=False, default='default.jpg')
+    #PROBLEM
     genre_id = db.Column(db.Integer, db.ForeignKey('genre.id'))
     cart=db.relationship('Cart', backref='cartbook', lazy=True)
     orderbook=db.relationship('OrderBook', backref='orderbook', lazy=True)
     
     def __repr__(self):
-        return f"Book('{self.title}', '{self.author}', '{self.publication}', '{self.ISBN}', '{self.price}', '{self.image_file}')"
+        return f"Book('{self.title}', '{self.author}', '{self.publication}', '{self.ISBN}', '{self.price}', '{self.image_file}', '{self.genre_id}' )"
 
 class Genre(db.Model, UserMixin):
-     id = db.Column(db.Integer, primary_key = True)
-     genre_name = db.Column(db.String(50), nullable=False)
-     book = db.relationship('Book')
+    id = db.Column(db.Integer, primary_key = True)
+    genre_name = db.Column(db.String(50), nullable=False)
+    #PROBLEM
+    book = db.relationship('Book', backref='genre', lazy=True)
+    def __repr__(self):
+        return f"Genre('{self.id}','{self.genre_name}')"
+
 
 
 class Cart(db.Model, UserMixin):
