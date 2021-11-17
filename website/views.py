@@ -1,5 +1,5 @@
 from flask import Blueprint,render_template, request, flash, redirect, url_for
-from flask_login import login_required, current_user
+from flask_login import login_user, login_required, logout_user, current_user
 from . import db
 from .models import User,Book, Cart, Genre,Order,OrderBook
 
@@ -66,8 +66,5 @@ def checkout():
     sum=0
     for cart in carts:
         sum=sum+cart.cartbook.price
-    if (c.reader.address is None) and (c.reader.state is None) and (c.reader.pincode is None):
-        flash('Add Address to Order Book', 'danger')
-        return redirect(url_for('account'))
-    return render_template('checkout.html', title="checkout",carts=carts,total=sum) 
+    return render_template('checkout.html', title="checkout",carts=carts,total=sum, user=current_user) 
 

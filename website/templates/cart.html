@@ -20,13 +20,13 @@
 							<h3 class="book-title">{{ cart.cartbook.title }}</h3>
 							<small class="text-muted">{{ cart.cartbook.author }}</small>
 						</div>
-					<p class="article-content">&#8377;{{ cart.cartbook.price }}</p>
+					<p class="article-content">${{ cart.cartbook.price }}</p>
 					</div>
 			</article>
 		{% endfor %}
 		<article class="media content-section">
 			<h3 class="article-content">Total&nbsp;:</h3>
-			<h3 class="article-content">&nbsp;&#8377;{{ total }}</h3>
+			<h3 class="article-content">&nbsp;${{ total }}</h3>
 			<div class="checkout">
 				<a class="btn btn-success btn-sm mt-1 mb-1" href="{{ url_for('views.checkout') }}">CheckOut</a>
 			</div>
