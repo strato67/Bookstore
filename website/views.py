@@ -10,9 +10,10 @@ views = Blueprint('views',__name__)
 def home():
     books= Book.query.all()
     #genre = Book.query.filter_by(title="The Catcher in the Rye").all()
-    genre = Genre.query.all()
+    #genre = Genre.query.all()
+    genre =  db.session.query(Genre.id,Genre.genre_name).select_from(Book).join(Genre, Genre.id == Book.genre_id).all()
     print(genre)
-    return render_template("index.html",user=current_user,books=books)
+    return render_template("index.html",user=current_user,books=books,genres=genre)
 
 
 # book info rediect 
