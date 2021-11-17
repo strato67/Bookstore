@@ -35,9 +35,8 @@
 
 <div class="scontainer">
 
-{% for book in books %}
-{% for genre in genres %}
-{% if genre.id == book.genre_id  %}
+{% for book,genre in combine %}
+
 
         <div class="card content-section h-100 {{ genre.genre_name }}">
           
@@ -45,7 +44,7 @@
           <a class="mr-2" href="{{ url_for('views.book_info', book_id=book.id) }}">
           <img class="card-img-top h-60" src="{{ url_for('static', filename='Book_Image/' + book.image_file) }}">
           <div class="card-body">
-              <h1>{{ genres[0][1]}}</h1>
+              
               <h5>{{ book.title }}</h5>
               <hr style="width:80%">
               <small class="text-muted">{{ book.author }}</small>
@@ -56,8 +55,7 @@
         </div>
 
 
-{% endif %}
-{% endfor %}
+
 {% endfor %}
 </div>
 
