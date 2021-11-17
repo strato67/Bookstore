@@ -3,6 +3,7 @@ from .models import User
 from werkzeug.security import generate_password_hash, check_password_hash
 from . import db
 from flask_login import login_user, login_required, logout_user, current_user
+from .models import User,Book, Cart, Genre,Order,OrderBook
 
 
 auth = Blueprint('auth',__name__)
@@ -64,3 +65,25 @@ def signup():
     return render_template("signup.html",user=current_user)
 
 
+@auth.route("/confirm")
+def confirm():
+    if current_user.is_authenticated:
+        carts=Cart.query.filter_by(user_id=current_user.id).all()
+        sum=0
+        for cart in carts:
+            sum=sum+cart.cartbook.price
+        order=Order(user_id=current_user.id,amount=sum)
+        db.session.add(order)
+        db.session.commit()
+        oid=order.id
+        for cart in carts:
+            orderbook=OrderBook(user_id=current_user.id,book_id=cart.cartbook.id,order_id=oid)
+            cart.cartbook.piece=cart.cartbook.piece-1
+            db.session.add(orderbook)
+            db.session.commit()
+            
+        flash('Book has been Ordered Successfully', 'success')
+        Cart.query.filter_by(user_id=current_user.id).delete()
+        db.session.commit()
+        return redirect(url_for('order'))
+    return render_template('order.html', title="order",user=current_user) 

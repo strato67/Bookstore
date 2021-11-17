@@ -9,7 +9,7 @@
               <h3 class="book-title">{{ cart.cartbook.title }}</h3>
               <small class="text-muted">{{ cart.cartbook.author }}</small>
             </div>
-            <p class="article-content">&#8377;{{ cart.cartbook.price }}</p>
+            <p class="article-content">${{ cart.cartbook.price }}</p>
           </div>
         </article>
     {% endfor %}
@@ -19,11 +19,11 @@
 	</article>
 	<article class="media content-section">
 		<h3 class="article-content">Total&nbsp;:</h3>
-		<h3 class="article-content">&nbsp;&#8377;{{ total }}</h3>
+		<h3 class="article-content">${{ total }}</h3>
 	<div class="checkout">
 		<div style="float:right">
 			<button type="button" class="btn btn-danger btn-sm m-1" data-toggle="modal" data-target="#deleteModal">Cancel</button>
-
+			<a class="btn btn-success btn-sm mt-1 mb-1" href="{{ url_for('auth.confirm') }}">Confirm</a>
 		</div>
 	</div>
 	</article>
