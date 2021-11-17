@@ -6,9 +6,18 @@ function shopFilter(selection){
                 
     }
     else{
-        cardSelect(selection);
+        genreSelect(selection);
     }
 }
+
+function visibleHelper(arr){
+    for(let i = 0;i<arr.length;i++){
+        arr[i].style.display="grid";
+    }
+}
+
+
+
 function visible(){
     className[0].style.visibility = "visible";
 
@@ -19,34 +28,25 @@ function visible(){
     var fiction =  className[0].getElementsByClassName("Fiction");
     var nonfiction =  className[0].getElementsByClassName("Non-Fiction");
 
-    for(let i = 0;i<action.length;i++){
-        action[i].style.display="grid";
-               
-    }
-    for(let i = 0;i<adventure.length;i++){
-        adventure[i].style.display="grid";
-               
-    }
-    for(let i = 0;i<comics.length;i++){
-        comics[i].style.display="grid";
-               
-    }
-    for(let i = 0;i<fantasy.length;i++){
-        fantasy[i].style.display="grid";
-               
-    }
-    for(let i = 0;i<fiction.length;i++){
-        fiction[i].style.display="grid";
-               
-    }
-    for(let i = 0;i<nonfiction.length;i++){
-        nonfiction[i].style.display="grid";
-        
-    }
-    
+
+    visibleHelper(action);
+    visibleHelper(adventure);
+    visibleHelper(comics);
+    visibleHelper(fantasy);
+    visibleHelper(fiction);
+    visibleHelper(nonfiction);
+
 }
 
-function cardSelect(card){
+function invisible(arr){
+    for(let i = 0;i<arr.length;i++){
+        arr[i].style.display="none";
+               
+    }
+}
+
+
+function genreSelect(genre){
 
     var action =  className[0].getElementsByClassName("Action");
     var adventure =  className[0].getElementsByClassName("Adventure");
@@ -58,17 +58,58 @@ function cardSelect(card){
     
     visible();
 
-    if(card==='Fantasy'){
+    switch(genre){
+        case "Action":
+            invisible(adventure);
+            invisible(comics);
+            invisible(fantasy);
+            invisible(fiction);
+            invisible(nonfiction);
+            break;
+        case "Adventure":
+            invisible(action);
+            invisible(comics);
+            invisible(fantasy);
+            invisible(fiction);
+            invisible(nonfiction);
+            break;
+        case "Comics":
+            invisible(adventure);
+            invisible(action);
+            invisible(fantasy);
+            invisible(fiction);
+            invisible(nonfiction);
+            break;
+        case "Fantasy":
+            invisible(adventure);
+            invisible(comics);
+            invisible(action);
+            invisible(fiction);
+            invisible(nonfiction);
+            break;
+        case "Fiction":
+            invisible(adventure);
+            invisible(comics);
+            invisible(fantasy);
+            invisible(action);
+            invisible(nonfiction);   
+            break;
+        case "Non-Fiction":
+            invisible(adventure);
+            invisible(comics);
+            invisible(fantasy);
+            invisible(fiction);
+            invisible(action);    
+            break;       
+
+        default:
+            visible();
+    }
+
+
+
         
-        for(let i = 0;i<fiction.length;i++){
-            fiction[i].style.display="none";
-        }
-    
-    }else{
+   
+
+} 
         
-        for(let i = 0;i<fantasy.length;i++){
-            fantasy[i].style.display="none";
-        }
-    } 
-        
-}
