@@ -1,7 +1,7 @@
 from flask import Blueprint,render_template, request, flash, redirect, url_for
 from flask_login import login_required, current_user
 from . import db
-from .models import Book, Cart, Genre
+from .models import User,Book, Cart, Genre,Order,OrderBook
 
 views = Blueprint('views',__name__)
 
@@ -22,6 +22,8 @@ def book_info(book_id):
     book = Book.query.get_or_404(book_id)
     return render_template('book_info.html', title=book.title, book=book, user=current_user)
 
+
+#######################
 # cart redirect
 @views.route("/cart")
 def cart():
@@ -31,6 +33,7 @@ def cart():
         sum=sum+cart.cartbook.price
     return render_template('cart.html', title="cart",carts=carts,total=sum,user=current_user)   
 
+# Addbooks to cart
 @views.route("/addcart/<int:book_id>")
 def addcart(book_id):
     if current_user.is_authenticated:
@@ -39,7 +42,32 @@ def addcart(book_id):
         db.session.add(cart)
         db.session.commit()
         flash('Book added successfully', 'success')
-        return redirect(url_for('cart'))
+        return redirect(url_for('views.cart'))
     else:
         flash('Login to add this book to your cart.', 'error')
         return redirect(url_for('auth.login'))
+
+# Delete books from cart
+@views.route("/cart/<int:cart_id>/delete_cart", methods=['POST'])
+@login_required
+def delete_cart(cart_id):
+    if current_user.is_authenticated:
+        cart = Cart.query.get_or_404(cart_id)
+        db.session.delete(cart)
+        db.session.commit()
+        flash('Book  has been deleted from Cart!', 'success')
+        return redirect(url_for('views.cart'))
+
+# Checkout Cart
+@views.route("/checkout")
+def checkout():
+    carts=Cart.query.filter_by(user_id=current_user.id).all()
+    c=Cart.query.filter_by(user_id=current_user.id).first()
+    sum=0
+    for cart in carts:
+        sum=sum+cart.cartbook.price
+    if (c.reader.address is None) and (c.reader.state is None) and (c.reader.pincode is None):
+        flash('Add Address to Order Book', 'danger')
+        return redirect(url_for('account'))
+    return render_template('checkout.html', title="checkout",carts=carts,total=sum) 
+
