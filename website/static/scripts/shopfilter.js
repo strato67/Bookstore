@@ -16,8 +16,6 @@ function visibleHelper(arr){
     }
 }
 
-
-
 function visible(){
     className[0].style.visibility = "visible";
 
