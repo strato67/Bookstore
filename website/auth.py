@@ -34,15 +34,19 @@ def account():
     form = UpdateAccountForm()
     if form.validate_on_submit():
         current_user.first_name = form.first_name.data
+        current_user.last_name = form.last_name.data
         current_user.email = form.email.data
         current_user.address = form.address.data
+        current_user.phone = form.first_name.data
         db.session.commit()
         flash('Your account has been updated!', 'success')
         return redirect(url_for('account'))
     elif request.method == 'GET':
         form.first_name.data = current_user.first_name
+        form.last_name.data = current_user.first_name
         form.email.data = current_user.email
         form.address.data=current_user.address
+        form.first_name.data = current_user.phone
     return render_template('account.html', title='Account', form=form, user=current_user)
      
 

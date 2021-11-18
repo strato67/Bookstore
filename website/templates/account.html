@@ -8,13 +8,13 @@
           <p class="text-secondary">{{ current_user.email }}</p>
         </div>
       </div>
-        <form method="POST" action="" enctype="multipart/form-data">
+        <form method="POST" action="" enctype="text/plain">
             {{ form.hidden_tag() }}
             <fieldset class="form-group">
                 <legend class="border-bottom mb-4">Account Info</legend>
                 <div class="form-group">
                     {{ form.first_name.label(class="form-control-label") }}
-
+                    <!-- First name -->
                     {% if form.first_name.errors %}
                         {{ form.first_name(class="form-control form-control-lg is-invalid") }}
                         <div class="invalid-feedback">
@@ -26,6 +26,22 @@
                         {{ form.first_name(class="form-control form-control-lg") }}
                     {% endif %}
                 </div>
+                <!-- Last name -->
+                    <div class="form-group">
+                        {{ form.last_name.label(class="form-control-label") }}
+    
+                        {% if form.last_name.errors %}
+                            {{ form.last_name(class="form-control form-control-lg is-invalid") }}
+                            <div class="invalid-feedback">
+                                {% for error in form.first_name.errors %}
+                                    <span>{{ error }}</span>
+                                {% endfor %}
+                            </div>
+                        {% else %}
+                            {{ form.first_name(class="form-control form-control-lg") }}
+                        {% endif %}
+                    </div>
+                <!-- Email  -->
                 <div class="form-group">
                     {{ form.email.label(class="form-control-label") }}
                     {% if form.email.errors %}
@@ -39,15 +55,20 @@
                         {{ form.email(class="form-control form-control-lg") }}
                     {% endif %}
                 </div>
-              <!--  <div class="form-group">
-                    {{ form.picture.label() }}
-                    {{ form.picture(class="form-control-file") }}
-                    {% if form.picture.errors %}
-                        {% for error in form.picture.errors %}
-                            <span class="text-danger">{{ error }}</span></br>
-                        {% endfor %}
+                <!-- phone number  -->
+                <div class="form-group">
+                    {{ form.phone.label(class="form-control-label") }}
+                    {% if form.phone.errors %}
+                        {{ form.phone(class="form-control form-control-lg is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.address.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.address(class="form-control form-control-lg") }}
                     {% endif %}
-                </div> -->
+                </div>
 				<div class="form-group">
                     {{ form.address.label(class="form-control-label") }}
                     {% if form.address.errors %}
@@ -61,34 +82,8 @@
                         {{ form.address(class="form-control form-control-lg") }}
                     {% endif %}
                 </div>
-			<!--<div class="form-group">
-                    {{ form.state.label(class="form-control-label") }}
-                    {% if form.state.errors %}
-                        {{ form.state(class="form-control form-control-lg is-invalid") }}
-                        <div class="invalid-feedback">
-                            {% for error in form.state.errors %}
-                                <span>{{ error }}</span>
-                            {% endfor %}
-                        </div>
-                    {% else %}
-                        {{ form.state(class="form-control form-control-lg") }}
-                    {% endif %}
-                </div>
-				<div class="form-group">
-                    {{ form.pincode.label(class="form-control-label") }}
-                    {% if form.pincode.errors %}
-                        {{ form.pincode(class="form-control form-control-lg is-invalid") }}
-                        <div class="invalid-feedback">
-                            {% for error in form.pincode.errors %}
-                                <span>{{ error }}</span>
-                            {% endfor %}
-                        </div>
-                    {% else %}
-                        {{ form.pincode(class="form-control form-control-lg") }}
-                    {% endif %}
-                </div>
             </fieldset>
-            <div class="form-group">-->
+            <div class="form-group">
                 {{ form.submit(class="btn btn-outline-info") }}
             </div>
         </form>
