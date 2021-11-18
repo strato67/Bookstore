@@ -23,6 +23,7 @@
           <a class="{{ 'nav-link active fw-bolder' if active_page == 'menu1' else 'nav-link' }}" aria-current="page" href="/">Shop</a>
 
           {% if user.is_authenticated %}
+          <a class="{{ 'nav-link active fw-bolder' if active_page == 'menu4' else 'nav-link' }}" href="/account"> Account</a>
           <a class="{{ 'nav-link active fw-bolder' if active_page == 'menu1' else 'nav-link' }}" href="/cart">Cart</a>
           <a class="{{ 'btn btn-secondary' }}" href="/logout">Logout</a>
           {% else %}

@@ -4,7 +4,8 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from . import db
 from flask_login import login_user, login_required, logout_user, current_user
 from .models import User,Book, Cart, Genre,Order,OrderBook
-
+from .forms import UpdateAccountForm
+from datetime import datetime, date
 
 auth = Blueprint('auth',__name__)
 
@@ -25,6 +26,25 @@ def login():
         else:
             flash('Account does not exist',category='error')
     return render_template("login.html",user=current_user)
+
+
+@auth.route("/account", methods=['GET', 'POST'])
+@login_required
+def account():
+    form = UpdateAccountForm()
+    if form.validate_on_submit():
+        current_user.first_name = form.first_name.data
+        current_user.email = form.email.data
+        current_user.address = form.address.data
+        db.session.commit()
+        flash('Your account has been updated!', 'success')
+        return redirect(url_for('account'))
+    elif request.method == 'GET':
+        form.first_name.data = current_user.first_name
+        form.email.data = current_user.email
+        form.address.data=current_user.address
+    return render_template('account.html', title='Account', form=form, user=current_user)
+     
 
 @auth.route('/logout')
 @login_required
@@ -77,7 +97,7 @@ def confirm():
         db.session.commit()
         oid=order.id
         for cart in carts:
-            orderbook=OrderBook(user_id=current_user.id,book_id=cart.cartbook.id,order_id=oid)
+            orderbook=OrderBook(user_id=current_user.id,book_id=cart.cartbook.id,order_id=oid,order_date= datetime.utcnow())
             cart.cartbook.piece=cart.cartbook.piece-1
             db.session.add(orderbook)
             db.session.commit()
