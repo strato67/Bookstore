@@ -37,16 +37,16 @@ def account():
         current_user.last_name = form.last_name.data
         current_user.email = form.email.data
         current_user.address = form.address.data
-        current_user.phone = form.first_name.data
+        current_user.phone = form.phone.data
         db.session.commit()
         flash('Your account has been updated!', 'success')
-        return redirect(url_for('account'))
+        return redirect(url_for('auth.account',user=current_user))
     elif request.method == 'GET':
         form.first_name.data = current_user.first_name
-        form.last_name.data = current_user.first_name
+        form.last_name.data = current_user.last_name
         form.email.data = current_user.email
-        form.address.data=current_user.address
-        form.first_name.data = current_user.phone
+        form.address.data = current_user.address
+        form.phone.data = current_user.phone
     return render_template('account.html', title='Account', form=form, user=current_user)
      
 

@@ -9,7 +9,7 @@ class UpdateAccountForm(FlaskForm):
     last_name = StringField('Last name',validators=[DataRequired(), Length(min=2, max=20)])
     email = StringField('Email',validators=[DataRequired(), Email()])
     phone = StringField('Phone',validators=[DataRequired()])
-    address= TextAreaField ('Address')
+    address= StringField ('Address',validators=[DataRequired()])
     submit = SubmitField('Update')
 
     def validate_email(self, email):
