@@ -1,6 +1,18 @@
 {% extends "base.html" %}
 {% block content %}
-
+	
+	<div class="content-section">
+          <h2 class="account-heading">{{ current_user.username }}</h2>
+          <p class="text-secondary">{{ current_user.email }}</p>
+		  <div style="float:right">
+			<a class="btn btn-success btn-sm mt-1 mb-1" href="{{ url_for('auth.account') }}">Edit</a>
+		  </div>
+		  <h6 class="text-secondary">{{ current_user.address }}</h6>
+		  <p class="text-secondary">{{ current_user.state }}</p>
+		  <p class="text-secondary">{{ current_user.pincode }}</p>
+        </div>
+      </div>
+	</div>
 	  {% for cart in carts %}
         <article class="media content-section">
           <img class="rounded-circle article-img" src="{{ url_for('static', filename='Book_Image/' + cart.cartbook.image_file) }}">
