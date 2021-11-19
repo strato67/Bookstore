@@ -1,9 +1,14 @@
 {% extends "base.html" %}
 {% block content %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/cartStyle.css') }}">
 	{% if not orders %}
-		<div class="content-section">
-          <h2 class="article-title"><center>You have not Buy Anything.Buy It!!!!</h2>
-		</div>
+	<div class="empty-cart">
+		
+		<h3>You don't have any orders</h3>
+		<br>
+		<img class="cartimg w-50 h-50" src="{{ url_for('static', filename='images/emptybox.png') }}">	
+		
+	</div>
 	{% else %}
 		<div class="content-section">
 			<h2 class="article-title"><center>My Orders</h2>
@@ -12,7 +17,7 @@
 			<div class="row d-flex mb-5 contact-info">
 				<div class="col-md-3 d-flex">
 					<div class="info bg-white p-4">
-						<h4 class="book-title">UserName</h4>
+						<h4 class="book-title">Username</h4>
 					</div>
 				</div>
 				<div class="col-md-3 d-flex">
