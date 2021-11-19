@@ -2,7 +2,6 @@
 {% block content %}
     <div class="content-section">
       <div class="media">
-        <!--<img class="rounded-circle account-img" src="{{ image_file }}"> -->
         <div class="media-body">
           <h2 class="account-heading">{{ current_user.first_name }}</h2>
           <p class="text-secondary">{{ current_user.email }}</p>
@@ -65,9 +64,10 @@
                             {% endfor %}
                         </div>
                     {% else %}
-                        {{ form.address(class="form-control form-control-lg") }}
+                        {{ form.phone(class="form-control form-control-lg") }}
                     {% endif %}
                 </div>
+                 <!-- address  -->
 				<div class="form-group">
                     {{ form.address.label(class="form-control-label") }}
                     {% if form.address.errors %}

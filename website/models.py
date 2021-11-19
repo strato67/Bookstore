@@ -1,6 +1,7 @@
 from . import db
 from flask_login import UserMixin
 from sqlalchemy.sql import func
+from datetime import datetime
 
 class Review(db.Model):
      id = db.Column(db.Integer, primary_key = True)
@@ -61,7 +62,7 @@ class Order(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
     amount = db.Column(db.Integer, nullable=False)
-    order_date = db.Column(db.DateTime(timezone = True), nullable=False)
+    order_date = db.Column(db.DateTime(timezone = True), nullable=False, default=datetime.utcnow)
     orderbook=db.relationship('OrderBook', backref='orderdetail', lazy=True)
     
 

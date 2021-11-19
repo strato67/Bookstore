@@ -101,13 +101,19 @@ def confirm():
         db.session.commit()
         oid=order.id
         for cart in carts:
-            orderbook=OrderBook(user_id=current_user.id,book_id=cart.cartbook.id,order_id=oid,order_date= datetime.utcnow())
-            cart.cartbook.piece=cart.cartbook.piece-1
+            orderbook=OrderBook(user_id=current_user.id,book_id=cart.cartbook.id,order_id=oid)
+            cart.cartbook.quantity=cart.cartbook.quantity-1
             db.session.add(orderbook)
             db.session.commit()
             
         flash('Book has been Ordered Successfully', 'success')
         Cart.query.filter_by(user_id=current_user.id).delete()
         db.session.commit()
-        return redirect(url_for('order'))
+        return redirect(url_for('auth.order'))
     return render_template('order.html', title="order",user=current_user) 
+
+@auth.route("/order")
+def order():
+    orders=Order.query.filter_by(user_id=current_user.id).all()
+    return render_template('order.html', title="order",orders=orders,user=current_user) 
+
