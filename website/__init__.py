@@ -23,7 +23,7 @@ def create_app():
 
     #admin testing
     admin = Admin(app)
-    admin.add_view(ModelView(User, db.session))
+    admin.add_view(ModelView(Book, db.session))
 
     from .views import views
     from .auth import auth
