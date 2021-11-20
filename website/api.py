@@ -4,11 +4,21 @@ from . import db
 from .models import Book
 
 
-class test():
+class infoQuery():
 
-    def testval(test):
+    def info(booktitle):
         wiki = wikipediaapi.Wikipedia('en')
+        pageSearch = wiki.page(booktitle)
 
+        if pageSearch.exists() == True:
+                descJSON = json.dumps({'description':pageSearch.summary})
+                descJSON = descJSON.replace('\\n','')
+                return(descJSON)
+        else:
+                return "No information available"
+
+
+'''
         page_py = wiki.page(test)
         print(page_py)
 
@@ -28,3 +38,5 @@ class test():
         final_dictionary = json.loads(initial)
 
         print(final_dictionary)
+        
+'''

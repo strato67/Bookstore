@@ -21,7 +21,7 @@
         <h3><small class="text-muted">{{ book.author }}</small></h3>
         <h5 class="card-text">${{ book.price }}</h5>
         <h6 class="card-text">About Book: </h6>
-        <p class="card-text">{{ book.genre_id }}</p>
+        <p class="card-text">{{ info }}</p>
         <h6 class="card-text">Publication: {{ book.publication }}</h6>
         {% if book.piece==0: %}
         <h2 class="card-title">Out Of Stock</h2>
