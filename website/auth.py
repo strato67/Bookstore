@@ -117,3 +117,10 @@ def order():
     orders=Order.query.filter_by(user_id=current_user.id).all()
     return render_template('order.html', title="order",orders=orders,user=current_user) 
 
+
+# receipt function
+@auth.route("/receipt/<int:order_id>")
+def receipt(order_id):
+    order=Order.query.get_or_404(order_id)
+    orderbook=OrderBook.query.filter_by(order_id=order_id)
+    return render_template('receipt.html',title="testdemp", order = order, orderbook = orderbook, user = current_user)

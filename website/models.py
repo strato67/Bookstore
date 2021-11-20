@@ -33,7 +33,7 @@ class Book(db.Model, UserMixin):
     genre_id = db.Column(db.Integer, db.ForeignKey('genre.id'))
     cart=db.relationship('Cart', backref='cartbook', lazy=True)
     orderbook=db.relationship('OrderBook', backref='orderbook', lazy=True)
-    
+        
     def __repr__(self):
         return f"Book('{self.title}', '{self.author}', '{self.publication}', '{self.ISBN}', '{self.price}', '{self.image_file}', '{self.genre_id}' )"
 
