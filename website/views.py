@@ -2,6 +2,7 @@ from flask import Blueprint,render_template, request, flash, redirect, url_for
 from flask_login import login_user, login_required, logout_user, current_user
 from . import db
 from .models import User,Book, Cart, Genre,Order,OrderBook
+#from .api import test
 
 views = Blueprint('views',__name__)
 
@@ -9,6 +10,7 @@ views = Blueprint('views',__name__)
 
 def home():
     booksJOINgenre =  db.session.query(Book,Genre).select_from(Book).join(Genre).all()
+    #j = test.testval("naruto")
     return render_template("index.html",user=current_user,combine=booksJOINgenre)
 
 # book info rediect 
