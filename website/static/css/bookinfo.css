@@ -3,12 +3,12 @@
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     grid-template-rows: repeat(1, 1fr);
-    gap: 0px 0px;
+    gap: 0px 5rem;
     grid-auto-flow: row;
     max-height: 50%;
 }
 .bimg{
-    justify-self: center; 
+    justify-self: end; 
     align-self: stretch; 
     
     grid-area: 1 / 1 / 3 / 2;
@@ -16,7 +16,7 @@
 }
 
 .binfo{
-    justify-self:center;
+    justify-self:start;
     align-self: center;
     grid-area: 1 / 2 / 3 / 3;
 }
@@ -35,3 +35,24 @@
     background: #FDFDFD;
     box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 }
+
+.about{
+    text-align: left !important;
+    justify-self: center; 
+    align-self: center; 
+    grid-area: 1 / 1 / 2 / 2; 
+}
+
+.icontainer {
+    display: grid; 
+    grid-template-columns: 1fr; 
+    grid-template-rows: 1fr; 
+    gap: 0px 0px; 
+    width: 60%; 
+    height: 50%; 
+    margin: 2em auto;
+  }
+  .divide{
+      margin-top: 3em;
+      width: 80%;
+  }
