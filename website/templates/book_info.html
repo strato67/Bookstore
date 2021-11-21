@@ -6,11 +6,9 @@
 
 <div class="bcontainer">
   <div class="bimg">
-    
-
     <img class="book-img  h-70" src="{{ url_for('static', filename='Book_Image/' + book.image_file) }}">
-
   </div>
+
   <div class="binfo">
 
     <div class="card" style="width: 25rem; height:25rem;">
@@ -20,8 +18,7 @@
         <hr style="width: 60%;">
         <h3><small class="text-muted">{{ book.author }}</small></h3>
         <h5 class="card-text">${{ book.price }}</h5>
-        <h6 class="card-text">About Book: </h6>
-        <p class="card-text">{{ book.genre_id }}</p>
+
         <h6 class="card-text">Publication: {{ book.publication }}</h6>
         {% if book.piece==0: %}
         <h2 class="card-title">Out Of Stock</h2>
@@ -40,6 +37,21 @@
 
   </div>
 </div>
+
+<hr class = "divide" >
+<div class="icontainer">
+  <div class="card about">
+    <div class="card-body">
+      <h4 class="card-title">About Book:</h4>
+      
+      <p class="card-text">{{ info }}</p>
+    </div>
+  </div>
+
+
+</div>
+
+
 
 
 {% endblock content %}
