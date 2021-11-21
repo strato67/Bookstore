@@ -51,24 +51,49 @@
 
 
 </div>
-<h2>Comments</h2>
 
-<ul class="list-group list-group-flush" id="comments">
+<div class="ccontainer">
+  <div class="card about">
 
-{% for comment in commentList %}
-
-<li class="list-group-item">{{ comment.user_id}}: {{ comment.date }} - {{ comment.data }}</li>
-{% endfor %}
-
-</ul> 
-
-<form method="POST">
-  <textarea name="comment" id="comment" class = "form-control"></textarea>
-  <button type="submit" class = "btn btn-primary">Comment</button>
+    <div class="card-body">
+      <h4 class="card-title">Comments</h4>
 
 
+      <div class="comment-container">
+        <form method="POST">
+          <textarea name="comment" id="comment" class = "form-control" rows="5" style="resize: none;"></textarea>
+          <button type="submit" class = "btn btn-secondary commentbtn">Comment</button>
+          
+        
+        
+        </form>
+        <br>
+        <ul class="list-group list-group-flush commentsect" id="comments">
+        
+          {% for comment,user in commentList %}
+          
+          <li class="list-group-item"><h6>{{ user.first_name }} {{ user.last_name }} - {{ comment.date.strftime("%b-%d-%Y") }} </h6> {{ comment.data }}</li>
+          {% endfor %}
+          
+        </ul> 
 
-</form>
+
+
+      </div>
+
+
+
+    </div>
+
+  </div>
+
+
+</div>
+
+
+
+
+
 
 
 {% endblock content %}

@@ -22,20 +22,25 @@ def home():
 def book_info(book_id):
     book = Book.query.get_or_404(book_id)
     bookinfoQuery = json.loads(infoQuery.info(book.title))
+    reviewJOINuser =  db.session.query(Review,User).select_from(Review).join(User).filter(Review.bookid == book_id).all()
     
-    commentlist = Review.query.filter(Review.bookid == book_id).all()
     if request.method == 'POST':
-        comment = request.form.get('comment')
-        if len(comment) < 1:
-            flash('Comment is too short' ,category='error')
+        if current_user.is_authenticated:
+            comment = request.form.get('comment')
+            if len(comment.strip()) < 1:
+                flash('Comment is too short' ,category='error')
+            elif len(comment.strip()) > 1000:
+                flash('Maximum comment size is 1000 characters' ,category='error')
+            else:
+                newComment = Review(data=comment, date = date.today(),user_id=current_user.id, bookid=book_id)
+                db.session.add(newComment)
+                db.session.commit()
+                flash('Comment added.', category='success')
         else:
-            newComment = Review(data=comment, date = date.today(),user_id=current_user.id, bookid=book_id)
-            db.session.add(newComment)
-            db.session.commit()
-            flash('Comment added.', category='success')
-            
+            flash('Login to comment.', 'error')
+            return redirect(url_for('auth.login'))  
 
-    return render_template('book_info.html', title=book.title, book=book, user=current_user, info = bookinfoQuery["description"], commentList = commentlist)
+    return render_template('book_info.html', title=book.title, book=book, user=current_user, info = bookinfoQuery["description"], commentList = reviewJOINuser)
 
 
 #######################

@@ -56,3 +56,16 @@
       margin-top: 3em;
       width: 80%;
   }
+.ccontainer{
+    width: 60%;
+    
+    margin: 2em auto;
+}
+.commentbtn{
+    float: right;
+    margin-top: 2%;
+}
+
+.commentsect{
+    margin-top: 3em;
+}

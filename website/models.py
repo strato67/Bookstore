@@ -8,8 +8,11 @@ class Review(db.Model):
      data = db.Column(db.String(1000))
      date = db.Column(db.DateTime(timezone = True), default=func.now)
      user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
-     #username = db.Column(db.String, db.ForeignKey('user.first_name'))
+     
      bookid = db.Column(db.Integer, db.ForeignKey('book.id'), nullable=False)
+
+     def __repr__(self):
+        return f"User('{self.user_id}','{self.bookid}', '{self.data}')"
 
 
 
@@ -22,7 +25,10 @@ class User(db.Model, UserMixin):
     phone = db.Column(db.String(100))
     password = db.Column(db.String(100))
     review = db.relationship('Review')
-    #name = db.relationship('Review')
+
+    def __repr__(self):
+        return f"User('{self.id}', '{self.first_name}', '{self.last_name}')"
+    
 
 class Book(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
