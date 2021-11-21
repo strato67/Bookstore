@@ -5,6 +5,7 @@ from . import db
 from .models import User,Book, Cart, Genre,Order,OrderBook,Review
 from .api import infoQuery
 from datetime import date
+from sqlalchemy import desc
 
 import json
 
@@ -22,7 +23,7 @@ def home():
 def book_info(book_id):
     book = Book.query.get_or_404(book_id)
     bookinfoQuery = json.loads(infoQuery.info(book.title))
-    reviewJOINuser =  db.session.query(Review,User).select_from(Review).join(User).filter(Review.bookid == book_id).all()
+    reviewJOINuser =  db.session.query(Review,User).select_from(Review).join(User).filter(Review.bookid == book_id).order_by(Review.id.desc()).all()
     
     if request.method == 'POST':
         if current_user.is_authenticated:
