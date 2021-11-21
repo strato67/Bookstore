@@ -2,8 +2,9 @@ import json
 from flask import Blueprint,render_template, request, flash, redirect, url_for
 from flask_login import login_user, login_required, logout_user, current_user
 from . import db
-from .models import User,Book, Cart, Genre,Order,OrderBook
+from .models import User,Book, Cart, Genre,Order,OrderBook,Review
 from .api import infoQuery
+from datetime import date
 import json
 
 views = Blueprint('views',__name__)
@@ -16,11 +17,23 @@ def home():
     return render_template("index.html",user=current_user,combine=booksJOINgenre)
 
 # book info rediect 
-@views.route("book_info/<int:book_id>")
+@views.route("book_info/<int:book_id>", methods=['GET','POST'])
 def book_info(book_id):
     book = Book.query.get_or_404(book_id)
     bookinfoQuery = json.loads(infoQuery.info(book.title))
-    return render_template('book_info.html', title=book.title, book=book, user=current_user, info = bookinfoQuery["description"])
+    
+    commentlist = Review.query.filter(Review.bookid == book_id).all()
+    if request.method == 'POST':
+        comment = request.form.get('comment')
+        if len(comment) < 1:
+            flash('Comment is too short' ,category='error')
+        else:
+            newComment = Review(data=comment, date = date.today(),user_id=current_user.id, bookid=book_id)
+            db.session.add(newComment)
+            db.session.commit()
+            flash('Comment added.', category='success')
+
+    return render_template('book_info.html', title=book.title, book=book, user=current_user, info = bookinfoQuery["description"], commentList = commentlist)
 
 
 #######################

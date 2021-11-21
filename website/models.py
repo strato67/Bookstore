@@ -8,6 +8,7 @@ class Review(db.Model):
      data = db.Column(db.String(1000))
      date = db.Column(db.DateTime(timezone = True), default=func.now)
      user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+     bookid = db.Column(db.Integer, db.ForeignKey('book.id'), nullable=False)
 
 
 class User(db.Model, UserMixin):
@@ -33,7 +34,7 @@ class Book(db.Model, UserMixin):
     genre_id = db.Column(db.Integer, db.ForeignKey('genre.id'))
     cart=db.relationship('Cart', backref='cartbook', lazy=True)
     orderbook=db.relationship('OrderBook', backref='orderbook', lazy=True)
-        
+    review = db.relationship('Review', backref='review', lazy=True) 
     def __repr__(self):
         return f"Book('{self.title}', '{self.author}', '{self.publication}', '{self.ISBN}', '{self.price}', '{self.image_file}', '{self.genre_id}' )"
 

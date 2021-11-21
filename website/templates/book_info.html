@@ -15,7 +15,7 @@
     <div class="card" style="width: 25rem; height:25rem;">
 
       <div class="card-body">
-        <h2 class="card-title">{{ book.title }}</h2>
+        <h1 class="card-title">{{ book.title }}</h1>
         <hr style="width: 60%;">
         <h3><small class="text-muted">{{ book.author }}</small></h3>
         <h5 class="card-text">${{ book.price }}</h5>
@@ -51,8 +51,24 @@
 
 
 </div>
+<h2>Comments</h2>
+
+<ul class="list-group list-group-flush" id="comments">
+
+{% for comment in commentList %}
+
+<li class="list-group-item">{{ comment.data }}</li>
+{% endfor %}
+
+</ul> 
+
+<form method="POST">
+  <textarea name="comment" id="comment" class = "form-control"></textarea>
+  <button type="submit" class = "btn btn-primary">Comment</button>
 
 
+
+</form>
 
 
 {% endblock content %}
