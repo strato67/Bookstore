@@ -33,6 +33,7 @@ def book_info(book_id):
             db.session.add(newComment)
             db.session.commit()
             flash('Comment added.', category='success')
+            
 
     return render_template('book_info.html', title=book.title, book=book, user=current_user, info = bookinfoQuery["description"], commentList = commentlist)
 
