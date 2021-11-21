@@ -8,7 +8,7 @@ import json
 
 views = Blueprint('views',__name__)
 
-@views.route('/')
+@views.route('/',methods=['GET', 'POST'])
 
 def home():
     booksJOINgenre =  db.session.query(Book,Genre).select_from(Book).join(Genre).all()
