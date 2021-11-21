@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% block title%}Orders{% endblock %}
 {% block content %}
 <link rel="stylesheet" href="{{ url_for('static', filename='css/order.css') }}">
 	{% if not orders %}
