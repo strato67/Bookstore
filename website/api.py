@@ -10,7 +10,7 @@ class infoQuery():
 
         if pageSearch.exists() == True:
                 descJSON = json.dumps({'description':pageSearch.summary})
-                descJSON = descJSON.replace('\\n','')
+                descJSON = descJSON.replace('\\n',' ')
                 return(descJSON)
         else:
                 pageSearch = "No information available on this book."
