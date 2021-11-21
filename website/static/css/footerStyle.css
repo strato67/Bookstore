@@ -16,3 +16,7 @@ footer{
 footer a{
     color:#ffffff !important; 
 }
+
+.fa {
+    text-decoration: none !important;
+}
