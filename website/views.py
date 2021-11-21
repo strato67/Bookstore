@@ -5,6 +5,7 @@ from . import db
 from .models import User,Book, Cart, Genre,Order,OrderBook,Review
 from .api import infoQuery
 from datetime import date
+
 import json
 
 views = Blueprint('views',__name__)

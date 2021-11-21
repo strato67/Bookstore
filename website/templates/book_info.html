@@ -57,7 +57,7 @@
 
 {% for comment in commentList %}
 
-<li class="list-group-item">{{ comment.data }}</li>
+<li class="list-group-item">{{ comment.user_id}}: {{ comment.date }} - {{ comment.data }}</li>
 {% endfor %}
 
 </ul> 
