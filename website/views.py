@@ -63,7 +63,7 @@ def addcart(book_id):
         cart=Cart(user_id=current_user.id,book_id=book_id)
         db.session.add(cart)
         db.session.commit()
-        flash('Book added successfully', 'success')
+        flash('Book added to cart', 'success')
         return redirect(url_for('views.cart'))
     else:
         flash('Login to add this book to your cart.', 'error')
@@ -77,7 +77,7 @@ def delete_cart(cart_id):
         cart = Cart.query.get_or_404(cart_id)
         db.session.delete(cart)
         db.session.commit()
-        flash('Book  has been deleted from Cart!', 'success')
+        flash('Book deleted from cart.', 'error')
         return redirect(url_for('views.cart'))
 
 # Checkout Cart

@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% block title%}Orders{% endblock %}
+{% set active_page = "menu5" %}
 {% block content %}
 <link rel="stylesheet" href="{{ url_for('static', filename='css/order.css') }}">
 	{% if not orders %}
