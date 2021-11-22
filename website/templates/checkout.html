@@ -1,22 +1,35 @@
 {% extends "base.html" %}
 {% block title%}Checkout{% endblock %}
 {% block content %}
-	
-	<div class="content-section">
-          <h2 class="account-heading">{{ current_user.username }}</h2>
-          <p class="text-secondary">{{ current_user.email }}</p>
-		  <div style="float:right">
-			<a class="btn btn-success btn-sm mt-1 mb-1" href="{{ url_for('auth.account') }}">Edit</a>
-		  </div>
-		  <h6 class="text-secondary">{{ current_user.address }}</h6>
-		  <p class="text-secondary">{{ current_user.state }}</p>
-		  <p class="text-secondary">{{ current_user.pincode }}</p>
-        </div>
-      </div>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/cartStyle.css') }}">
+
+<div class="finContainer jumbotron">
+	<h2 class="totaldisplay">Total: {{ "$%.2f"|format(total) }}</h2>
+	<h5 class="article-content mode">Payment Method: Cash On Delivery</h5>
+
+	<h6 >{{ current_user.first_name }} {{ current_user.last_name }}</h6>
+	<h6 class="text-secondary">{{ current_user.email }}</h6>
+
+	<h6 class="text-secondary">{{ current_user.address }}</h6>
+	<a class="btn btn-secondary btn-sm mt-1 mb-1" href="{{ url_for('auth.account') }}">Edit Info</a>
+	<div class="btnoptions">
+		<button type="button" class="btn btn-danger btn-lg " data-toggle="modal" data-target="#deleteModal">Cancel</button>
+	<a class="btn btn-success btn-lg mt-1 mb-1" href="{{ url_for('auth.confirm') }}">Confirm</a>
+
+
 	</div>
-	  {% for cart in carts %}
-        <article class="media content-section">
-          <img class="rounded-circle article-img" src="{{ url_for('static', filename='Book_Image/' + cart.cartbook.image_file) }}">
+	
+</div>
+
+
+
+
+	<div class="cartContainer" style="padding-bottom: 2em;">
+		{% for cart in carts %}
+		<hr style="width:100%">
+		<div class="media content-section cartitem">
+			
+			<img src="{{ url_for('static', filename='Book_Image/' + cart.cartbook.image_file) }}" style='height: 10%; width: 10%; object-fit: contain'>
           <div class="media-body">
             <div class="article-metadata">
               <h3 class="book-title">{{ cart.cartbook.title }}</h3>
@@ -24,21 +37,22 @@
             </div>
             <p class="article-content">${{ cart.cartbook.price }}</p>
           </div>
-        </article>
-    {% endfor %}
-	<article class="media content-section">
-		<h3 class="book-title">Payment Mode&nbsp;:</h3>
-		<h3 class="article-content mode">Cash On Delivery</h3>
-	</article>
-	<article class="media content-section">
-		<h3 class="article-content">Total&nbsp;:</h3>
-		<h3 class="article-content">${{ total }}</h3>
-	<div class="checkout">
-		<div style="float:right">
-			<button type="button" class="btn btn-danger btn-sm m-1" data-toggle="modal" data-target="#deleteModal">Cancel</button>
-			<a class="btn btn-success btn-sm mt-1 mb-1" href="{{ url_for('auth.confirm') }}">Confirm</a>
+
+
+
+
+
 		</div>
+		
+
+
+		{% endfor %}
+
+
 	</div>
-	</article>
+
+
+    
+
 
 {% endblock content %}

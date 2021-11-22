@@ -29,3 +29,15 @@
     display: flex;
     align-items: center;
 }
+
+.finContainer{
+    text-align: left;
+    padding-top: 2em;
+    padding-left: 5em;
+    padding-right: 5em;
+    box-shadow: rgba(0, 0, 0, 0.08) 0px 4px 12px;
+}
+.btnoptions{
+    padding-top: 2em;
+    
+}
