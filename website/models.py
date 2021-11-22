@@ -24,6 +24,8 @@ class User(db.Model, UserMixin):
     address = db.Column(db.String(100))
     phone = db.Column(db.String(100))
     password = db.Column(db.String(100))
+    order=db.relationship('Order', backref='buyer', lazy=True)
+    orderbook=db.relationship('OrderBook', backref='orderby', lazy=True)
     review = db.relationship('Review')
 
     def __repr__(self):
