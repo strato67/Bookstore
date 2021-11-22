@@ -37,6 +37,7 @@ def book_info(book_id):
                 db.session.add(newComment)
                 db.session.commit()
                 flash('Comment added.', category='success')
+                return redirect(url_for('views.book_info', book_id=book_id))
         else:
             flash('Login to comment.', 'error')
             return redirect(url_for('auth.login'))  
