@@ -124,3 +124,11 @@ def receipt(order_id):
     order=Order.query.get_or_404(order_id)
     orderbook=OrderBook.query.filter_by(order_id=order_id)
     return render_template('receipt.html',title="testdemp", order = order, orderbook = orderbook, user = current_user)
+
+
+@auth.route("/cancel")
+@login_required
+def cancel():
+    flash('Transaction Cancelled', 'success')
+    return redirect(url_for('views.cart'))
+    

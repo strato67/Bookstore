@@ -90,3 +90,11 @@ def checkout():
         sum=sum+cart.cartbook.price
     return render_template('checkout.html', title="checkout",carts=carts,total=sum, user=current_user) 
 
+@views.route("/cancel",methods=['POST'])
+@login_required
+def cancel():
+    flash('Transaction Cancelled', 'success')
+    return redirect(url_for('cart'))
+
+
+

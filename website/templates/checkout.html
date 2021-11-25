@@ -13,7 +13,7 @@
 	<h6 class="text-secondary">{{ current_user.address }}</h6>
 	<a class="btn btn-secondary btn-sm mt-1 mb-1" href="{{ url_for('auth.account') }}">Edit Info</a>
 	<div class="btnoptions">
-		<button type="button" class="btn btn-danger btn-lg " data-toggle="modal" data-target="#deleteModal">Cancel</button>
+	<a class="btn btn-danger btn-lg "  href="{{ url_for('auth.cancel') }}">Cancel</a>
 	<a class="btn btn-success btn-lg mt-1 mb-1" href="{{ url_for('auth.confirm') }}">Confirm</a>
 
 
@@ -38,21 +38,10 @@
             <p class="article-content">${{ cart.cartbook.price }}</p>
           </div>
 
-
-
-
-
 		</div>
 		
-
-
 		{% endfor %}
 
-
 	</div>
-
-
-    
-
 
 {% endblock content %}
