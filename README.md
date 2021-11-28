@@ -1,11 +1,11 @@
 # Bookstore
 
 
-### System Requirements 
+## System Requirements 
 
 > Python 3.9+ 
 
-### Instructions
+## Instructions
 
 #### Clone this repository
 
@@ -33,7 +33,7 @@ virtualenv venv
 venv\Scripts\activate
 ```
 
-#### You will need to install package dependencies using
+> You will need to install package dependencies using
 
 ```
 pip install -r requirements.txt
