@@ -27,6 +27,7 @@ def create_app():
     admin.add_view(ModelView(Book, db.session))
     admin.add_view(ModelView(Order, db.session))
     admin.add_view(ModelView(Review, db.session))
+    admin.add_view(ModelView(User, db.session))
   
     
     from .views import views
