@@ -45,7 +45,7 @@ pip install -r requirements.txt
 flask run
 ```
 
-#### In your web browser, paste the following address to access webpages
+> In your web browser, paste the following address to access webpages
 
 ```
 http://127.0.0.1:5000/
